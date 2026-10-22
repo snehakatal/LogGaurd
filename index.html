@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LogGuard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation bar -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logs">Log Details</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>LogGuard</h1>
+        <p>Automated Log File Analysis Using Regular Expressions</p>
+    </header>
+
+    <main>
+
+        <!-- Home page -->
+        {% if page == "home" %}
+
+        <section class="card">
+            <h2>Analyze Your Log File</h2>
+
+            <p>
+                Upload a .txt or .log file to find errors
+                and suspicious activity.
+            </p>
+
+            <form action="/upload"
+                  method="POST"
+                  enctype="multipart/form-data">
+
+                <input type="file"
+                       name="logfile"
+                       accept=".txt,.log"
+                       required>
+
+                <button type="submit">
+                    Upload and Analyze
+                </button>
+            </form>
+
+            {% if message %}
+                <p class="message">{{ message }}</p>
+            {% endif %}
+        </section>
+
+        <section class="card">
+            <h3>How It Works</h3>
+            <p>1. Upload a log file.</p>
+            <p>2. Regex checks each line.</p>
+            <p>3. View the analysis report.</p>
+        </section>
+
+        <!-- Dashboard page -->
+        {% elif page == "dashboard" and report %}
+
+        <section class="card">
+            <h2>Analysis Dashboard</h2>
+            <p>Log analysis completed successfully.</p>
+        </section>
+
+        <section class="cards">
+            {% for name, value in report.counts.items() %}
+            <div class="card stat-card">
+                <p>{{ name }}</p>
+                <div class="number">{{ value }}</div>
+            </div>
+            {% endfor %}
+        </section>
+
+        <section class="card">
+            <a class="btn" href="/logs">
+                View Log Details
+            </a>
+        </section>
+
+        <!-- Log details page -->
+        {% elif page == "logs" and report %}
+
+        <section class="card">
+            <h2>Log Details</h2>
+
+            {% for entry in report.entries %}
+
+            <div class="log {{ entry.category }}">
+
+                <strong>{{ entry.category }}</strong>
+
+                {% if entry.suspicious %}
+                    <span class="suspicious">
+                        SUSPICIOUS
+                    </span>
+                {% endif %}
+
+                <p>
+                    Line {{ entry.number }}:
+                    {{ entry.text }}
+                </p>
+
+            </div>
+
+            {% else %}
+                <p>The uploaded file is empty.</p>
+            {% endfor %}
+
+        </section>
+
+        {% else %}
+
+        <section class="card">
+            <p>Please upload a log file first.</p>
+            <a class="btn" href="/">Go to Home</a>
+        </section>
+
+        {% endif %}
+
+    </main>
+
+    <footer>
+        TOC Case Study 8 | LogGuard Project
+    </footer>
+
+</body>
+</html>

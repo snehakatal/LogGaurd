@@ -1,0 +1,159 @@
+
+/* General page design */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f6fb;
+    color: #1f2937;
+}
+
+/* Navigation bar */
+nav {
+    background: #172554;
+    padding: 18px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #93c5fd;
+}
+
+/* Header */
+header {
+    background: #1d4ed8;
+    color: white;
+    text-align: center;
+    padding: 28px 15px;
+}
+
+/* Main content */
+main {
+    max-width: 950px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px #0001;
+}
+
+/* Dashboard statistics */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(140px, 1fr)
+    );
+    gap: 12px;
+}
+
+.stat-card p {
+    font-weight: bold;
+    color: #475569;
+}
+
+.number {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1d4ed8;
+}
+
+/* Buttons */
+button,
+.btn {
+    display: inline-block;
+    background: #1d4ed8;
+    color: white;
+    padding: 11px 16px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover,
+.btn:hover {
+    background: #172554;
+}
+
+/* File upload */
+input[type="file"] {
+    display: block;
+    margin: 15px 0;
+    max-width: 100%;
+}
+
+/* Error messages */
+.message {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* Log entries */
+.log {
+    background: #f8fafc;
+    padding: 12px;
+    margin: 10px 0;
+    border-left: 5px solid #94a3b8;
+    border-radius: 5px;
+    overflow-wrap: anywhere;
+}
+
+.log p {
+    margin-bottom: 0;
+}
+
+/* Category colors */
+.ERROR {
+    border-color: #dc2626;
+}
+
+.WARNING {
+    border-color: #d97706;
+}
+
+.INFO {
+    border-color: #16a34a;
+}
+
+/* Suspicious activity label */
+.suspicious {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* Footer */
+footer {
+    color: #64748b;
+    text-align: center;
+    padding: 18px;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+    nav a {
+        display: inline-block;
+        margin: 8px;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
